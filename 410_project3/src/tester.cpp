@@ -9,14 +9,79 @@
 #include <thread>
 #include <atomic>
 #include <vector>
+#include <chrono>
 #include "../tester.h"
 #include "../print_ts.cpp"
 
 using namespace std;
 
-bool doWork = true;
+std::string CANCEL = "USER_CHOSE_TO_CANCEL";
+bool bDoWork = true;
 std::vector<std::thread> threads;
 
+/*
+ * Helper method for startThreads
+ *
+ */
+void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
+	switch (wp) {
+	case P1:
+		for (int i = 0; i < times; i++) {
+			if(bDoWork) {
+				PRINT1(s);
+				this_thread::sleep_for(chrono::milliseconds(msDelay));
+			} else {
+				PRINT1(CANCEL);
+				this_thread::sleep_for(chrono::milliseconds(msDelay));
+				break;
+			}
+		}
+	case P2:
+		for (int i = 0; i < times; i++) {
+					if(bDoWork) {
+						PRINT2(s, s);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+					} else {
+						PRINT1(CANCEL);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+						break;
+					}
+				}
+	case P3:
+		for (int i = 0; i < times; i++) {
+					if(bDoWork) {
+						PRINT3(s, s, s);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+					} else {
+						PRINT1(CANCEL);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+						break;
+					}
+				}
+	case P4:
+		for (int i = 0; i < times; i++) {
+					if(bDoWork) {
+						PRINT4(s, s, s, s);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+					} else {
+						PRINT1(CANCEL);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+						break;
+					}
+				}
+	case P5:
+		for (int i = 0; i < times; i++) {
+					if(bDoWork) {
+						PRINT5(s, s, s, s, s);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+					} else {
+						PRINT1(CANCEL);
+						this_thread::sleep_for(chrono::milliseconds(msDelay));
+						break;
+					}
+				}
+	}
+}
 /*
  * starts cancelable threads (this means that each thread periodicaly checks to see if it should stop)
  * string s			-the string to print
@@ -27,7 +92,7 @@ std::vector<std::thread> threads;
  */
 void startThreads(std::string s, int numThreads, WHICH_PRINT wp, int numTimesToPrint, int millisecond_delay) {
 	for (int i = 0; i < numThreads; i++) {
-		thread thread[i]()
+		threads.push_back(std::thread(printer, s, wp, numTimesToPrint, millisecond_delay));
 	}
 }
 
@@ -38,6 +103,7 @@ void startThreads(std::string s, int numThreads, WHICH_PRINT wp, int numTimesToP
  * of code.
  */
 void setCancelThreads(bool bCancel) {
+	bDoWork = !bCancel;
 
 }
 
@@ -52,6 +118,5 @@ void joinThreads() {
 	}
 
 	cout << "All threads complete" << endl;
-
 
 }
