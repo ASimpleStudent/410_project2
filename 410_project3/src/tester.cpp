@@ -14,7 +14,8 @@
 
 using namespace std;
 
-
+bool doWork = true;
+std::vector<std::thread> threads;
 
 /*
  * starts cancelable threads (this means that each thread periodicaly checks to see if it should stop)
@@ -46,6 +47,11 @@ void setCancelThreads(bool bCancel) {
  * function twice your application will crash.
  */
 void joinThreads() {
+	for(auto& t: threads) {
+		t.join();
+	}
+
+	cout << "All threads complete" << endl;
 
 
 }
