@@ -8,9 +8,13 @@
 #include <string>
 #include <thread>
 #include <atomic>
+#include <vector>
 #include "../tester.h"
+#include "../print_ts.cpp"
 
 using namespace std;
+
+
 
 /*
  * starts cancelable threads (this means that each thread periodicaly checks to see if it should stop)
@@ -21,7 +25,9 @@ using namespace std;
  * millisecond_delay- how long (in milliseconds) to wait between prints
  */
 void startThreads(std::string s, int numThreads, WHICH_PRINT wp, int numTimesToPrint, int millisecond_delay) {
-
+	for (int i = 0; i < numThreads; i++) {
+		thread thread[i]()
+	}
 }
 
 
@@ -36,7 +42,7 @@ void setCancelThreads(bool bCancel) {
 
 /*
  * waits for all threads to complete.  If you store references to your threads in a vector
- * remeber to clear that vector after joining its threads.  Otherwise if you call this
+ * remember to clear that vector after joining its threads.  Otherwise if you call this
  * function twice your application will crash.
  */
 void joinThreads() {
