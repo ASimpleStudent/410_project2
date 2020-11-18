@@ -10,8 +10,9 @@
 #include <atomic>
 #include <vector>
 #include <chrono>
-#include "../tester.h"
-#include "../print_ts.cpp"
+#include <iostream>
+#include "tester.h"
+#include "print_ts.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
 				break;
 			}
 		}
+		break;
 	case P2:
 		for (int i = 0; i < times; i++) {
 					if(bDoWork) {
@@ -47,6 +49,7 @@ void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
 						break;
 					}
 				}
+		break;
 	case P3:
 		for (int i = 0; i < times; i++) {
 					if(bDoWork) {
@@ -58,6 +61,7 @@ void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
 						break;
 					}
 				}
+		break;
 	case P4:
 		for (int i = 0; i < times; i++) {
 					if(bDoWork) {
@@ -69,6 +73,7 @@ void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
 						break;
 					}
 				}
+		break;
 	case P5:
 		for (int i = 0; i < times; i++) {
 					if(bDoWork) {
@@ -80,6 +85,7 @@ void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
 						break;
 					}
 				}
+		break;
 	}
 }
 /*
@@ -116,7 +122,7 @@ void joinThreads() {
 	for(auto& t: threads) {
 		t.join();
 	}
-
+	threads.clear();
 	cout << "All threads complete" << endl;
 
 }

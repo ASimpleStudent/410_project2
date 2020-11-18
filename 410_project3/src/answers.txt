@@ -1,0 +1,11 @@
+1. How do you determine the number of threads you should
+	launch to realistically test your application?
+	
+There comes a point after the minimum execution time of the 
+program where the execution time will begin to increase (law
+of diminishing returns).
+	
+	
+2. If you are launching several threads, under what
+	circumstances would these threads not run parallel
+	in a modern processor?
