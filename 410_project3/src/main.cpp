@@ -12,9 +12,11 @@ int main() {
 	int timestoPrnt = 2;
 	int millSecDely = 200000;
 
-	startThreads(a, numThrd, P2, timestoPrnt, millSecDely);
-	startThreads(b, numThrd, P2, timestoPrnt, millSecDely);
-	setCancelThreads(true);
-	joinThreads();
+
+
+	string s1 = "some";
+	string s2 = "data";
+	PRINT2(s1,s2);
+	PRINT3(s1, s1, s1);
 	return 0;
  }

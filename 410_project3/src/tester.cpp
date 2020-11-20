@@ -17,11 +17,12 @@
 using namespace std;
 
 std::string CANCEL = "USER_CHOSE_TO_CANCEL";
-bool bDoWork = true;
+atomic<bool> bDoWork(true);
 std::vector<std::thread> threads;
 
 /*
- * Helper method for startThreads
+ * Helper method for startThreads that deals with the print statements in
+ * 	print_ts.cpp
  *
  */
 void printer(std::string s, WHICH_PRINT wp, int times, int msDelay) {
@@ -123,6 +124,6 @@ void joinThreads() {
 		t.join();
 	}
 	threads.clear();
-	cout << "All threads complete" << endl;
+	cout << "Threads complete" << endl;
 
 }

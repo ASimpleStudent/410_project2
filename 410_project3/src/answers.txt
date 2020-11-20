@@ -1,11 +1,36 @@
+answers.txt
+
+	Created on Nov 18, 2020
+		Author Adam Stillabower
+
+
+
+
+
 1. How do you determine the number of threads you should
 	launch to realistically test your application?
 	
 There comes a point after the minimum execution time of the 
 program where the execution time will begin to increase (law
-of diminishing returns).
+of diminishing returns). It should also be said that it really
+depends on the system and the specific CPU that you are 
+running the program on. It will typically require extensive 
+testing to find the optimal number of threads you should use
+to test the application. 
 	
 	
 2. If you are launching several threads, under what
 	circumstances would these threads not run parallel
 	in a modern processor?
+	
+The first thing that came to my mind would be computers that
+only have single core processors, like some laptops. But said
+laptops have gone to the wayside in light of smaller, multicore
+processors. A single core CPU would force processes, especially
+processes that need to access the same resouces, to wait for
+each other, effectively not allowing them to run in parallel.
+An example in which a multi-threaded code would not be running
+in parallel would be with a multi-threaded web server that 
+creates a number of 'worker' threads, utlizing one main thread
+to accept requests and send them to the workers. 
+	
